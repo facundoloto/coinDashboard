@@ -1,35 +1,37 @@
-async function searchCoin(coin) { //search coin in array and return the price of each market
-    let coins = [];
-  
-    await coin.map(function (tickers) {
-  
+async function searchCoin(coins) { //search coin in array and return the price of each market
+    let coin = [];
+
+    if (coins.data.data.length > 0) {
+    await coins.data.data.map(function (coins) {
+
         //Filter coins in different markets and targets in usdt
-      if (tickers.market.name === "Binance" && tickers.target === "USDT") {
-        coins.push({
+      if (coins.exchangeId === "Binance" && coins.quoteSymbol === "USDT") {
+        coin.push({
           market: "binance",
-          price: tickers.last,
+          price: coins.priceUsd,
         });
       }
   
-      if (tickers.market.name === "KuCoin"  && tickers.target === "USDT") {
-        coins.push({
+      if (coins.exchangeId=== "Kucoin"  && coins.quoteSymbol === "USDT") {
+        coin.push({
           market: "kucoin",
-          price: tickers.last,
+          price: coins.priceUsd,
         });
       }
   
-      if (tickers.market.name === "Gate.io" && tickers.target === "USDT") {
-        coins.push({
+      if (coins.exchangeId === "Gate" && coins.quoteSymbol === "USDT") {
+        coin.push({
           market: "gate.io",
-          price: tickers.last,
+          price: coins.priceUsd,
         });
       }
       
     }
-   
-    );
   
-    return coins;
+    );
+    }
+
+    return coin;
     
   };
 

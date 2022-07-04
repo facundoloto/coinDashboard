@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const http = require("http").Server(app);
 const cors = require("cors");
-const { getAllCoin } = require("./controller/CoinController/CoinController.js");
+const { getAllCoinHttp } = require("./controller/CoinController/CoinControllerHttp.js");
+const { getAllCoin } = require("./controller/CoinController/CoinControllerSockets.js");
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
@@ -18,14 +19,14 @@ const socketIO = require("socket.io")(http, {
 });
 
 socketIO.on("connection", (socket) => {
-  let data;
 
   console.log(`user connected: ${socket.id}`);
 
+  let data;
   interval = setInterval(async () => {
-  data = await getAllCoin(); //get data from api
-    socket.emit("getAllCoins", data); //send data to client in realtime each 5 seconds
-  }, 5000);
+    data = await getAllCoin();
+    socket.emit("getAllCoins", data); //control this to get data from api and send to client
+  }, 30000); //get data each 30 seconds 
 
   socket.on("disconnect", () => {
     console.log("El usuario se ha desconectado");
@@ -34,6 +35,6 @@ socketIO.on("connection", (socket) => {
 });
 
 //routes
-app.get("/", getAllCoin); //it's to get all coins only one time beacuse after we'll send data with socket.io
+app.get("/", getAllCoinHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
 
 module.exports = app;
