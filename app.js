@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const http = require("http").Server(app);
 const cors = require("cors");
-const { getAllCoinHttp } = require("./controller/CoinController/CoinControllerHttp.js");
-const { getAllCoin } = require("./controller/CoinController/CoinControllerSockets.js");
+const { getAllCoin, getAllCoinHttp } = require("./controller/CoinController/CoinController.js");
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
@@ -26,7 +25,7 @@ socketIO.on("connection", (socket) => {
   interval = setInterval(async () => {
     data = await getAllCoin();
     socket.emit("getAllCoins", data); //control this to get data from api and send to client
-  }, 30000); //get data each 30 seconds 
+  }, 25000); //get data each 30 seconds 
 
   socket.on("disconnect", () => {
     console.log("El usuario se ha desconectado");
