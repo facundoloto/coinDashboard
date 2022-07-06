@@ -52,7 +52,7 @@ const getAllCoin = async () => {
       },
       {
         name: "waves",
-        coins: await searchCoin(waves),
+        data: await searchCoin(waves),
         maximumDifference: await maximumDifference(waves),
       },
       {
