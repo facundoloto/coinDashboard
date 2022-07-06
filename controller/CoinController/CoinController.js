@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { OK, INTERNAL_SERVER_ERROR } = require("../../constants/httpCodes");
 const { searchCoin } = require("./SearchCoin.js");
+const { maximumDifference } = require("./MaximumDifference.js");
 
 const getAllCoin = async () => {
   const host = "http://api.coincap.io/v2/markets?baseId=";
@@ -27,42 +28,52 @@ const getAllCoin = async () => {
       {
         name: "aave",
         data: await searchCoin(aave),
+        maximumDifference: await maximumDifference(aave),
       },
       {
         name: "maker",
         data: await searchCoin(maker),
+        maximumDifference: await maximumDifference(maker),
       },
       {
         name: "the-graph",
         data: await searchCoin(grt),
+        maximumDifference: await maximumDifference(grt),
       },
       {
         name: "kusama",
         data: await searchCoin(kusama),
+        maximumDifference: await maximumDifference(kusama),
       },
       {
         name: "zilliqa",
         data: await searchCoin(zilliqa),
+        maximumDifference: await maximumDifference(zilliqa),
       },
       {
         name: "waves",
         coins: await searchCoin(waves),
+        maximumDifference: await maximumDifference(waves),
       },
       {
         name: "neo",
         data: await searchCoin(neo),
+        maximumDifference: await maximumDifference(neo),
       },
       {
         name: "fantom",
         data: await searchCoin(fantom),
+        maximumDifference: await maximumDifference(fantom),
       },
       {
         name: "quant",
         data: await searchCoin(quant),
+        maximumDifference: await maximumDifference(quant),
       },
       {
         name: "dash",
         data: await searchCoin(dash),
+        maximumDifference: await maximumDifference(dash),
       },
     ];
 
@@ -79,10 +90,12 @@ async function getAllCoinHttp(req, res) {
     res.status(OK).send(data);
   } catch (error) {
     console.log(error);
-    res
-      .status(INTERNAL_SERVER_ERROR)
-      .send({ msg: "there is an error with the server,try later" });
+    res.status(INTERNAL_SERVER_ERROR).send({
+      msg: "there is an error with the server,try later",
+    });
   }
 }
 
-module.exports = { getAllCoinHttp };
+module.exports = {
+  getAllCoinHttp,
+};

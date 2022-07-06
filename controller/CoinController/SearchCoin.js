@@ -1,16 +1,6 @@
-
-function maxDiff(num1, num2) { //Calculate the percentage difference between the highest and lowest price
-  let stepOne = (num1 / num2) * 100;
-  let stepTwo = stepOne - 100;
-  let result = "+" + stepTwo + "%";
-  return result;
-}
-
 async function searchCoin(coins) {
   let coin = [];
-  let maxPrice;
-  let minPrice;
-
+  
   if (coins.data.data.length > 0) {
     await coins.data.data.map(function (coins) { //Filter coins in different markets and targets in usdt
 
@@ -41,7 +31,7 @@ async function searchCoin(coins) {
     });
   }
 
-  maxPrice = [...coin];//copy the array
+  /*maxPrice = [...coin];//copy the array
   minPrice = [...coin];
   maxPrice.sort((a, b) => b.price - a.price);
   minPrice.sort((a, b) => a.price - b.price);
@@ -51,6 +41,7 @@ async function searchCoin(coins) {
     marketPriceLow: minPrice[0].market,
     percentageMaxDiff: maxDiff(maxPrice[0].price, minPrice[0].price),
   })
+*/
 
   return coin;
 }
