@@ -8,7 +8,7 @@ function maxDiff(num1, num2) {
 
 async function maximumDifference(coins) {
   let coin = [];
-  let percentageMaxDiff = [];
+  let percentageMaxDiff;
   let maxPrice;
   let minPrice;
 
@@ -42,11 +42,11 @@ async function maximumDifference(coins) {
     maxPrice.sort((a, b) => b.price - a.price);
     minPrice.sort((a, b) => a.price - b.price);
 
-    percentageMaxDiff.push({
+    percentageMaxDiff={
       marketPriceHight: maxPrice[0].market,
       marketPriceLow: minPrice[0].market,
       percentageMaxDiff: maxDiff(maxPrice[0].price, minPrice[0].price),
-    });
+    };
   }
 
   return percentageMaxDiff;
