@@ -4,7 +4,7 @@ const { searchCoin } = require("./SearchCoin.js");
 const { maximumDifference } = require("./MaximumDifference.js");
 
 const getAllCoin = async () => {
-  const host = "http://api.coincap.io/v2/markets?interval=m1&&baseId=";
+  const host = "http://api.coincap.io/v2/markets?baseId=";
   const config = {
     headers: {
       Authorization: "Bearer " + "ddc4d486-638c-436f-b5a8-e6fc4a5040a4",
@@ -24,7 +24,7 @@ const getAllCoin = async () => {
     const quant = await axios(host + "quant", config);
     const dash = await axios(host + "dash", config);
 
-    const data = [
+    const data =[
       {
         name: "aave",
         data: await searchCoin(aave),
@@ -76,6 +76,7 @@ const getAllCoin = async () => {
         maximumDifference: await maximumDifference(dash),
       },
     ];
+  
 
     return data;
   } catch (error) {
@@ -97,5 +98,5 @@ async function getAllCoinHttp(req, res) {
 }
 
 module.exports = {
-  getAllCoinHttp,
+ getAllCoin, getAllCoinHttp,
 };

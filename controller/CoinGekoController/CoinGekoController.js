@@ -15,23 +15,23 @@ const getAllCoinGeko = async () => {
       `https://api.coingecko.com/api/v3/coins/maker/tickers`
     );
 
-    const data = {
-      aave: {
+    const data = [
+      {
         name: "aave",
         coins: await searchCoinApiGeko(aave.data.tickers),
         maximumDifference: await maximumDifferenceGeko(aave.data.tickers),
       },
-      klay: {
+       {
         name: "klay",
         coins: await searchCoinApiGeko(klay.data.tickers),
         maximumDifference: await maximumDifferenceGeko(aave.data.tickers),
       },
-      maker: {
+      {
         name: "maker",
         coins: await searchCoinApiGeko(maker.data.tickers),
         maximumDifference: await maximumDifferenceGeko1(aave.data.tickers),
       },
-    };
+  ];
 
     return data;
   } catch (error) {
