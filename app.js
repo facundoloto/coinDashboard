@@ -4,7 +4,7 @@ const http = require("http").Server(app);
 const cors = require("cors");
 const {botTelegram} = require("./bot/BotTelegram.js");
 const { getAllCoinHttp } = require("./controller/CoinController/CoinController.js");
-const internal = require("stream");
+const { getAllCoinGekoHttp } = require("./controller/CoinGekoController/CoinGekoController.js");
 const PORT = 3001;
 
 app.use(cors());
@@ -19,5 +19,5 @@ http.listen(PORT, () => {
   }, 100000);*/
 //routes
 app.get("/", getAllCoinHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
-
+app.get("/geko",getAllCoinGekoHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
 module.exports = app;
