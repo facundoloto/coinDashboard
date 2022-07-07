@@ -1,4 +1,5 @@
 //Calculate the percentage difference between the highest and lowest price
+//agregar 
 function maxDiff(num1, num2) {
   let stepOne = (num1 / num2) * 100;
   let stepTwo = stepOne - 100;
@@ -32,7 +33,7 @@ async function maximumDifference(coins) {
 
       if (coins.exchangeId === "gate" && coins.quoteSymbol === "USDT") {
         coin.push({
-          market: coins.exchangeId,
+          market: coins.exchangeId+"IO",
           price: coins.priceUsd,
         });
       }
@@ -41,11 +42,13 @@ async function maximumDifference(coins) {
     minPrice = [...coin];
     maxPrice.sort((a, b) => b.price - a.price);
     minPrice.sort((a, b) => a.price - b.price);
-
+    
     percentageMaxDiff={
       marketPriceHight: maxPrice[0].market,
+      marketPriceMedium: maxPrice[1].market,
       marketPriceLow: minPrice[0].market,
-      percentageMaxDiff: maxDiff(maxPrice[0].price, minPrice[0].price),
+      percentageMarketDiffLow: maxDiff(maxPrice[0].price, minPrice[0].price),
+      percentageMarketDiffMedium: maxDiff(maxPrice[0].price, maxPrice[1].price),
     };
   }
 

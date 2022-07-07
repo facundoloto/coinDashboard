@@ -22,7 +22,7 @@ async function searchCoin(coins) {
 
       if (coins.exchangeId === "gate" && coins.quoteSymbol === "USDT") {
         coin.push({
-          market: coins.exchangeId,
+          market: coins.exchangeId+"IO",
           price: coins.priceUsd,
           date: coins.updated,
         });
@@ -30,18 +30,6 @@ async function searchCoin(coins) {
 
     });
   }
-
-  /*maxPrice = [...coin];//copy the array
-  minPrice = [...coin];
-  maxPrice.sort((a, b) => b.price - a.price);
-  minPrice.sort((a, b) => a.price - b.price);
-
-  coin.push({
-    marketPriceHight: maxPrice[0].market,
-    marketPriceLow: minPrice[0].market,
-    percentageMaxDiff: maxDiff(maxPrice[0].price, minPrice[0].price),
-  })
-*/
 
   return coin;
 }

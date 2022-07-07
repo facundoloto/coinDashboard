@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 const http = require("http").Server(app);
 const cors = require("cors");
+const {botTelegram} = require("./bot/BotTelegram.js");
 const { getAllCoinHttp } = require("./controller/CoinController/CoinController.js");
+const internal = require("stream");
 const PORT = 3001;
 
 app.use(cors());
@@ -12,6 +14,9 @@ http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+/*setInterval(async () => {
+  await botTelegram(); //get data from api
+  }, 100000);*/
 //routes
 app.get("/", getAllCoinHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
 

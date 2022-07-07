@@ -16,6 +16,8 @@
     "http-errors": "^2.0.0",
     "node-fetch": "^3.2.6",
     "nodemon": "^2.0.18",
-    "socket.io": "^4.5.1"
+    "socket.io": "^4.5.1",
+    "telebot": "^1.4.1",
+    "telegraf": "^4.8.5"
   }
 }
