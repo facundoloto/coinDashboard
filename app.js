@@ -14,9 +14,9 @@ http.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-/*setInterval(async () => {
+setInterval(async () => {
   await botTelegram(); //get data from api
-  }, 60000);*/
+  }, 120000);
 //routes
 app.get("/", getAllCoinHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
 app.get("/geko",getAllCoinGekoHttp); //it's to get all coins only one time beacuse after we'll send data with socket.io
