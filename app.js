@@ -10,9 +10,6 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-http.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 
 setInterval(async () => {
   await botTelegram(); //get data from api
